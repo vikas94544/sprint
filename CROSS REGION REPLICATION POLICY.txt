@@ -1,0 +1,31 @@
+{
+   "Version":"2012-10-17",
+   "Id":"PolicyForDestinationBucket",
+   "Statement":[
+      {
+         "Sid":"Permissions on objects",
+         "Effect":"Allow",
+         "Principal":{
+            "AWS":"arn:aws:iam::730335232115:role/service-role/s3crr_role_for_sourcetodestbuscket"  //IAM RULE AFTER CREATING REPLICATION RULE
+         },
+         "Action":[
+            "s3:ReplicateDelete",
+            "s3:ReplicateObject"
+         ],
+         "Resource":"arn:aws:s3:::15april2024firstbucket/*"   //DESTINATION BUCKET NAME
+      },
+      {
+         "Sid":"Permissions on bucket",
+         "Effect":"Allow",
+         "Principal":{
+            "AWS":"arn:aws:iam::730335232115:role/service-role/s3crr_role_for_sourcetodestbuscket"       // IAM RULE AFTER CREATING REPLICATION RULE
+         },
+         "Action": [
+            "s3:List*",
+            "s3:GetBucketVersioning",
+            "s3:PutBucketVersioning"
+         ],
+         "Resource":"arn:aws:s3:::15april2024firstbucket"            //DESTINATION BUCKET ARN
+      }
+   ]
+}

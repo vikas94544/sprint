@@ -1,0 +1,21 @@
+{
+    "Version": "2012-10-17",
+    "Id": "S3PolicyId1",
+    "Statement": [
+        {
+            "Sid": "AllowIPmix",
+            "Effect": "Allow",
+            "Principal": "*",   // * means any operations 
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::sourcetodestbuscket", // this is for principal // copy arn from policy generator
+                "arn:aws:s3:::sourcetodestbuscket/*" // this is for action on principal
+            ],
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "106.221.232.131/32"
+                }
+            }
+        }
+    ]
+}
